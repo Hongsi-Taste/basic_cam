@@ -22,7 +22,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/photoPreview"
+        app:layout_constraintBottom_toBottomOf="@+id/toGal"
+        android:text="Camera"
+        />
+    <Button
+        android:id="@+id/toGal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toCam"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:text="asd"/>
+        android:text="Gallery"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
