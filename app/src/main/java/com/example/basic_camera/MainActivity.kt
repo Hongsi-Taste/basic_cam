@@ -50,9 +50,14 @@ class MainActivity : AppCompatActivity() {
 
         permissions()
 
+//        갤러리로 가는 액티비티
+//        카메라로 가는 버튼 설정
         binding.toCam.setOnClickListener {
             var cameraIntent = Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE)
             startActivityForResult(cameraIntent, TAKE_PICTURE)
+        }
+        binding.toGal.setOnClickListener{
+            startActivity(Intent(this, galActivity::class.java))
         }
     }
 
@@ -65,19 +70,20 @@ class MainActivity : AppCompatActivity() {
 //        권한 설정이 하나라도 되어있지 않으면 권한 요청 -> 카메라
         if ((writeEx != PackageManager.PERMISSION_GRANTED)
             && (readEx != PackageManager.PERMISSION_GRANTED)
-            && (camAcc != PackageManager.PERMISSION_GRANTED)
-        ) {
-            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA), 1)
-            ActivityCompat.requestPermissions(
-                this,
-                arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
-                1
-            )
-            ActivityCompat.requestPermissions(
-                this,
-                arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
-                1
-            )
+            && (camAcc != PackageManager.PERMISSION_GRANTED)) {
+
+            if(camAcc != PackageManager.PERMISSION_GRANTED){
+                ActivityCompat.requestPermissions(this,
+                    arrayOf(Manifest.permission.CAMERA), 1)
+            }
+            if(readEx != PackageManager.PERMISSION_GRANTED){
+                ActivityCompat.requestPermissions(this,
+                    arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), 1)
+            }
+            if(writeEx != PackageManager.PERMISSION_GRANTED){
+                ActivityCompat.requestPermissions(this,
+                    arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), 1)
+            }
         }
     }
     private fun openCamera() {
